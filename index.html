@@ -1,58 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rummlandia News</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-        h1 {
-            margin-bottom: 20px;
-        }
-        .news-box {
-            background-color: #1a252f;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            width: 80%;
-            max-width: 600px;
-        }
-        .reload-button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .reload-button:hover {
-            background-color: #2980b9;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RummlandiaNews</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f2f2f2;
+      color: #222;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #d1495b;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+
+    .flag {
+      display: block;
+      margin: 1em auto;
+      width: 200px;
+      height: 120px;
+      background: linear-gradient(to bottom, orange 33.3%, red 33.3% 66.6%, blue 66.6%);
+    }
+
+    main {
+      padding: 2em;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    article {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 1em;
+      margin-bottom: 2em;
+    }
+
+    footer {
+      background-color: #ddd;
+      text-align: center;
+      padding: 1em;
+      font-size: 0.8em;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Rummlandia News</h1>
-        <div class="news-box">
-            <p>No news now. Check tomorrow or reload the page for news.</p>
-        </div>
-        <button class="reload-button" onclick="location.reload()">Reload Page</button>
-    </div>
+
+<header>
+  <h1>RummlandiaNews</h1>
+  <p>Officiella nyheter från Furstendömet Rummlandia</p>
+</header>
+
+<div class="flag"></div>
+
+<main>
+  <article>
+    <h2>BREAKING: Ny McDonald's öppnar i PLW!</h2>
+    <p>Enligt rapporter från PLWNews har en ny McDonald's nu öppnat inom PLW:s gränser, komplett med Chetaoso Bläkeh-burgare!</p>
+    <p><em>26 mars 2025</em></p>
+  </article>
+
+  <article>
+    <h2>Konflikten mellan Toyland och Socialist Toyland förvärras</h2>
+    <p>Civilkrig har brutit ut i Toyland. Upperland har gått med i den antikommunistiska alliansen. Mer nyheter väntas.</p>
+    <p><em>25 mars 2025</em></p>
+  </article>
+</main>
+
+<footer>
+  © 2025 RummlandiaNews. Alla rättigheter förbehållna.
+</footer>
+
 </body>
 </html>
