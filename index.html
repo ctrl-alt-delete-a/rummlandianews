@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>RummlandiaNews</title>
   <style>
     :root {
@@ -28,7 +28,6 @@
       background-color: var(--bg);
       color: var(--text);
       margin: 0;
-      padding: 0;
       transition: background-color 0.3s, color 0.3s;
     }
 
@@ -37,6 +36,7 @@
       color: white;
       padding: 1em;
       text-align: center;
+      position: relative;
     }
 
     .flag {
@@ -45,6 +45,25 @@
       width: 200px;
       height: 120px;
       background: linear-gradient(to bottom, orange 33.3%, red 33.3% 66.6%, blue 66.6%);
+    }
+
+    .mode-toggle {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+    }
+
+    .mode-toggle svg {
+      width: 100%;
+      height: 100%;
+      fill: white;
+      transition: fill 0.3s;
     }
 
     main {
@@ -66,31 +85,21 @@
       text-align: center;
       padding: 1em;
       font-size: 0.8em;
-      color: var(--text);
-    }
-
-    .toggle-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: none;
-      border: 2px solid white;
-      color: white;
-      padding: 0.4em 0.8em;
-      cursor: pointer;
-      border-radius: 6px;
-      font-size: 0.9em;
-      transition: all 0.3s;
-    }
-
-    .toggle-btn:hover {
-      background-color: rgba(255,255,255,0.2);
     }
   </style>
 </head>
 <body>
   <header>
-    <button class="toggle-btn" onclick="toggleMode()">Byt läge</button>
+    <button class="mode-toggle" id="modeToggle" onclick="toggleMode()" aria-label="Byt läge">
+      <!-- Måne som standard (för ljust läge) -->
+      <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/>
+      </svg>
+      <!-- Solen är dold i början -->
+      <svg id="sunIcon" style="display: none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M6.76 4.84l-1.8-1.79-1.42 1.41 1.79 1.8zm10.48 0l1.8-1.79 1.41 1.41-1.79 1.8zM12 4h0a1 1 0 010-2 1 1 0 010 2zm8 8a1 1 0 012 0 1 1 0 01-2 0zm-8 8h0a1 1 0 010 2 1 1 0 010-2zm-8-8a1 1 0 01-2 0 1 1 0 012 0zm1.79 6.24l-1.79 1.8 1.41 1.41 1.8-1.79zm12.02 0l1.79 1.8-1.41 1.41-1.8-1.79zM12 6a6 6 0 100 12 6 6 0 000-12z"/>
+      </svg>
+    </button>
     <h1>RummlandiaNews</h1>
     <p>Officiella nyheter från Furstendömet Rummlandia</p>
   </header>
@@ -99,43 +108,49 @@
 
   <main>
     <article>
-      <h2>BREAKING: Ny McDonald's öppnar i PLW!</h2>
-      <p>Enligt rapporter från PLWNews har en ny McDonald's nu öppnat inom PLW:s gränser, komplett med Chetaoso Bläkeh-burgare!</p>
-      <p><em>26 mars 2025</em></p>
+      <h2>BREAKING: McDonald's öppnar i PLW!</h2>
+      <p>En ny McDonald's har öppnat i PLW med Chetaoso Bläkeh-burgaren på menyn.</p>
     </article>
 
     <article>
-      <h2>Konflikten mellan Toyland och Socialist Toyland förvärras</h2>
-      <p>Civilkrig har brutit ut i Toyland. Upperland har gått med i den antikommunistiska alliansen. Mer nyheter väntas.</p>
-      <p><em>25 mars 2025</em></p>
+      <h2>Ny konflikt i Toyland</h2>
+      <p>Civilkrig mellan Socialist Toyland och Nonsocialist Toyland har brutit ut. Upperland har gått med i alliansen mot kommunism.</p>
     </article>
   </main>
 
   <footer>
-    © 2025 RummlandiaNews. Alla rättigheter förbehållna.
+    © 2025 RummlandiaNews
   </footer>
 
   <script>
+    const body = document.body;
+    const moonIcon = document.getElementById("moonIcon");
+    const sunIcon = document.getElementById("sunIcon");
+
     function setMode(mode) {
-      if (mode === 'dark') {
-        document.body.classList.add('dark');
+      if (mode === "dark") {
+        body.classList.add("dark");
+        moonIcon.style.display = "none";
+        sunIcon.style.display = "block";
       } else {
-        document.body.classList.remove('dark');
+        body.classList.remove("dark");
+        moonIcon.style.display = "block";
+        sunIcon.style.display = "none";
       }
-      localStorage.setItem('theme', mode);
+      localStorage.setItem("theme", mode);
     }
 
     function toggleMode() {
-      const isDark = document.body.classList.contains('dark');
-      setMode(isDark ? 'light' : 'dark');
+      const isDark = body.classList.contains("dark");
+      setMode(isDark ? "light" : "dark");
     }
 
-    // Initiera tema
-    const userPref = localStorage.getItem('theme');
+    // Startläge
+    const userPref = localStorage.getItem("theme");
     if (userPref) {
       setMode(userPref);
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setMode('dark');
+    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setMode("dark");
     }
   </script>
 </body>
