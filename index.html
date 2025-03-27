@@ -1,156 +1,118 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RummlandiaNews</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    :root {
-      --bg: #f2f2f2;
-      --text: #222;
-      --header: #d1495b;
-      --article-bg: #ffffff;
-      --shadow: rgba(0,0,0,0.1);
-      --footer-bg: #ddd;
-    }
-
-    body.dark {
-      --bg: #1c1f20;
-      --text: #f5f5f5;
-      --header: #bb3e4c;
-      --article-bg: #2a2d2f;
-      --shadow: rgba(255,255,255,0.05);
-      --footer-bg: #2a2d2f;
-    }
-
     body {
-      font-family: "Segoe UI", sans-serif;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
       background-color: var(--bg);
       color: var(--text);
-      margin: 0;
-      transition: background-color 0.3s, color 0.3s;
+      transition: background-color 0.4s, color 0.4s;
+    }
+
+    :root {
+      --bg: #ffffff;
+      --text: #000000;
+    }
+
+    .darkmode {
+      --bg: #1c1f20;
+      --text: #ffffff;
     }
 
     header {
-      background-color: var(--header);
-      color: white;
-      padding: 1em;
-      text-align: center;
-      position: relative;
+      background: var(--bg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 2px solid #ccc;
     }
 
-    .flag {
-      display: block;
-      margin: 1em auto;
-      width: 200px;
-      height: 120px;
-      background: linear-gradient(to bottom, orange 33.3%, red 33.3% 66.6%, blue 66.6%);
+    h1 {
+      margin: 0;
+      font-size: 1.5rem;
     }
 
-    .mode-toggle {
-      position: absolute;
-      top: 10px;
-      right: 10px;
+    .controls {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .controls button {
       background: none;
       border: none;
+      font-size: 1.5rem;
       cursor: pointer;
-      width: 32px;
-      height: 32px;
-      padding: 0;
-    }
-
-    .mode-toggle svg {
-      width: 100%;
-      height: 100%;
-      fill: white;
-      transition: fill 0.3s;
+      color: var(--text);
     }
 
     main {
-      padding: 2em;
-      max-width: 800px;
-      margin: auto;
+      padding: 2rem;
     }
 
     article {
-      background-color: var(--article-bg);
+      border: 2px solid #aaa;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
       border-radius: 8px;
-      box-shadow: 0 0 10px var(--shadow);
-      padding: 1em;
-      margin-bottom: 2em;
+      background: rgba(255,255,255,0.1);
     }
 
     footer {
-      background-color: var(--footer-bg);
       text-align: center;
-      padding: 1em;
-      font-size: 0.8em;
+      padding: 1rem;
+      font-size: 0.9rem;
+      border-top: 1px solid #ccc;
     }
   </style>
 </head>
 <body>
   <header>
-    <button class="mode-toggle" id="modeToggle" onclick="toggleMode()" aria-label="Byt läge">
-      <!-- Måne som standard (för ljust läge) -->
-      <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/>
-      </svg>
-      <!-- Solen är dold i början -->
-      <svg id="sunIcon" style="display: none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M6.76 4.84l-1.8-1.79-1.42 1.41 1.79 1.8zm10.48 0l1.8-1.79 1.41 1.41-1.79 1.8zM12 4h0a1 1 0 010-2 1 1 0 010 2zm8 8a1 1 0 012 0 1 1 0 01-2 0zm-8 8h0a1 1 0 010 2 1 1 0 010-2zm-8-8a1 1 0 01-2 0 1 1 0 012 0zm1.79 6.24l-1.79 1.8 1.41 1.41 1.8-1.79zm12.02 0l1.79 1.8-1.41 1.41-1.8-1.79zM12 6a6 6 0 100 12 6 6 0 000-12z"/>
-      </svg>
-    </button>
     <h1>RummlandiaNews</h1>
-    <p>Officiella nyheter från Furstendömet Rummlandia</p>
+    <div class="controls">
+      <button onclick="toggleLanguage()" title="Change Language">
+        <i class="fas fa-globe"></i>
+      </button>
+      <button onclick="toggleDarkMode()" title="Toggle Dark Mode">
+        <i id="modeIcon" class="fas fa-sun"></i>
+      </button>
+    </div>
   </header>
-
-  <div class="flag"></div>
 
   <main>
     <article>
-      <h2>BREAKING: McDonald's öppnar i PLW!</h2>
-      <p>En ny McDonald's har öppnat i PLW med Chetaoso Bläkeh-burgaren på menyn.</p>
+      <h2>🚨 Breaking News: Toyland Civil War & Nike Partitioned</h2>
+      <p><strong>Date:</strong> March 27, 2025</p>
+      <p>
+        Toyland broke into a civil war and the fascist group “Fascist Toyland” won. Upperland joined the anti-communist side.<br />
+        Nike Empire, formerly Micronato, moved its capital to avoid collapse like its predecessor.<br />
+        Analysts fear this marks the Second Toylandish Revolutionary War.
+      </p>
     </article>
 
-    <article>
-      <h2>Ny konflikt i Toyland</h2>
-      <p>Civilkrig mellan Socialist Toyland och Nonsocialist Toyland har brutit ut. Upperland har gått med i alliansen mot kommunism.</p>
-    </article>
+    <!-- Add more <article> blocks here for other news -->
   </main>
 
   <footer>
-    © 2025 RummlandiaNews
+    © 2025 RummlandiaNews – Made for the Principality of Rummlandia
   </footer>
 
   <script>
-    const body = document.body;
-    const moonIcon = document.getElementById("moonIcon");
-    const sunIcon = document.getElementById("sunIcon");
-
-    function setMode(mode) {
-      if (mode === "dark") {
-        body.classList.add("dark");
-        moonIcon.style.display = "none";
-        sunIcon.style.display = "block";
-      } else {
-        body.classList.remove("dark");
-        moonIcon.style.display = "block";
-        sunIcon.style.display = "none";
-      }
-      localStorage.setItem("theme", mode);
+    function toggleDarkMode() {
+      document.body.classList.toggle('darkmode');
+      const icon = document.getElementById('modeIcon');
+      icon.classList.toggle('fa-sun');
+      icon.classList.toggle('fa-moon');
     }
 
-    function toggleMode() {
-      const isDark = body.classList.contains("dark");
-      setMode(isDark ? "light" : "dark");
-    }
-
-    // Startläge
-    const userPref = localStorage.getItem("theme");
-    if (userPref) {
-      setMode(userPref);
-    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setMode("dark");
+    function toggleLanguage() {
+      alert("Language switcher coming soon! 😅");
     }
   </script>
 </body>
